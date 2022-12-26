@@ -1,5 +1,4 @@
 import React,{useContext,useEffect} from 'react'
-import Addnote from './Addnote';
 import Notes from './Notes';
 
 export const Home = () => {
@@ -9,7 +8,6 @@ export const Home = () => {
   
   return (
     <>
-      <Addnote/>
       <div className="container">
         <Notes/>
       </div>

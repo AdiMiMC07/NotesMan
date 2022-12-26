@@ -13,7 +13,7 @@ export const Navbar = () => {
         <>
             <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
                 <div className="container-fluid">
-                    <Link className="navbar-brand" to="/">Navbar</Link>
+                    <Link className="navbar-brand" to="/">NotesMan</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -26,10 +26,8 @@ export const Navbar = () => {
                                 <Link className={`nav-link ${location.pathname==='/about'?"active":""}`} to="/about">About</Link>
                             </li>
                         </ul>
-                        <form className="d-flex" role="search">
-                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                            <button className="btn btn-outline-success" type="submit">Search</button>
-                        </form>
+                        <Link className="btn btn-primary mx-1" to="/login" role="button">Login</Link>
+                        <Link className="btn btn-primary mx-1" to="/signup" role="button">Sign Up</Link>
                     </div>
                 </div>
             </nav>
