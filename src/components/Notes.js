@@ -2,15 +2,22 @@ import React, { useContext, useEffect,useState,useRef } from 'react'
 import Noteitem from './Noteitem';
 import noteContext from '../context/notes/noteContext'
 import Addnote from './Addnote';
+import { useNavigate } from 'react-router-dom';
 
-const Notes = () => {
+const Notes = (props) => {
+    const navigate = useNavigate();
     const context = useContext(noteContext);
     const { notes, getNotes,editNote } = context;
     useEffect(() => {
-        getNotes();
+        if (localStorage.getItem('token')){
+            getNotes();
+        }
+        else{
+            navigate("/login");
+        }
         //eslint-disable-next-line
     }, [])
-    const [note, setnote] = useState({id: 0,edittitle:"",editdescription:"",edittag:"general"})
+    const [note, setnote] = useState({id: 0,edittitle:"",editdescription:"",edittag:""})
     const updateNote = (currentNote)=>{
         ref.current.click();
         setnote({id:currentNote._id,edittitle : currentNote.title,editdescription : currentNote.description,edittag : currentNote.tag})
@@ -18,6 +25,7 @@ const Notes = () => {
     const handleClick =(e)=>{
         editNote(note.id,note.edittitle,note.editdescription,note.edittag);
         refClose.current.click();
+        props.displayAlert("Note Updated Successfully","success");
     }
     const onChange = (e)=>{
         setnote({...note,[e.target.name]:e.target.value})
@@ -59,12 +67,12 @@ const Notes = () => {
                     </div>
                 </div>
             </div>
-            <Addnote />
-            <div className="row">
-                <h2 className="text-center">Your Notes</h2>
-                {notes.map((note, index) => {
-                    return <Noteitem key={index} updateNote={updateNote} note={note} />
-                })}
+            <Addnote displayAlert={props.displayAlert}/>
+            <div className="row container">
+                <h2 className="text-center mb-3">Your Notes</h2>
+                {notes.length!==0?notes.map((note, index) => {
+                    return <Noteitem key={index} updateNote={updateNote} displayAlert={props.displayAlert} note={note} />
+                }).reverse():<p className='container text-center'>No Notes to display</p>}
             </div>
         </>
     )

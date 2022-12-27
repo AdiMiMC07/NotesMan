@@ -4,7 +4,7 @@ import noteContext from '../context/notes/noteContext'
 const Noteitem = (props) => {
     const context = useContext(noteContext);
     const {deleteNote} = context;
-    const {note,updateNote} = props;
+    const {note,updateNote,displayAlert} = props;
 
     return (
         <>
@@ -16,7 +16,7 @@ const Noteitem = (props) => {
                             <span className={`badge rounded-pill text-bg-${note.tag==="general"?"primary":(note.tag==="personal"?"success":"info")} text-center`}>{note.tag}</span>
                         </div>
                         <p className="card-text">{note.description}</p>
-                        <i className="fa-solid fa-trash mx-2" onClick={()=>{deleteNote(note._id)}}></i>
+                        <i className="fa-solid fa-trash mx-2" onClick={()=>{deleteNote(note._id);displayAlert("Note Deleted Successfully","success")}}></i>
                         <i className="fa-solid fa-file-pen mx-2" onClick={()=>{updateNote(note)}}></i>
                     </div>
                 </div>

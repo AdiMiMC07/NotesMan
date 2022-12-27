@@ -1,15 +1,16 @@
 import React,{useState,useContext} from 'react'
 import noteContext from '../context/notes/noteContext'
 
-const Addnote = () => {
+const Addnote = (props) => {
     const context = useContext(noteContext);
     const {addNote} = context;
 
-    const [note, setnote] = useState({title:"",description:"",tag:"general"})
+    const [note, setnote] = useState({title:"",description:"",tag:""})
 
     const handleClick = ()=>{
         addNote(note.title,note.description,note.tag);
         setnote({title:"",description:"",tag:""})
+        props.displayAlert("Note Added Successfully","success");
     }
     const onChange = (e)=>{
         setnote({...note,[e.target.name]:e.target.value})
@@ -23,7 +24,7 @@ const Addnote = () => {
             </div>
             <div className="mb-3">
                 <label htmlFor="description" className="form-label">Description</label>
-                <textarea type="text" className="form-control" id="description" name="description" rows="3" onChange={onChange} value={note.description} required></textarea>
+                <textarea type="text" className="form-control" id="description" name="description" rows="3" onChange={onChange} value={note.description} placeholder="Enter the description here" required></textarea>
             </div>
             <div className="mb-3">
                 <label htmlFor="tag" className="form-label">Tag</label>
