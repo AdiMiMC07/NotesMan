@@ -7,6 +7,7 @@ const Signup = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, email, password, confirmPass } = credentials;
+    console.log(password,confirmPass);
     if (password === confirmPass) {
       const signupData = await fetch("http://localhost:8000/api/auth/createuser", {
         method: "POST",
@@ -34,6 +35,7 @@ const Signup = (props) => {
   }
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
+    console.log(credentials.confirmPass)
   }
   return (
     <div className='container p-3 border rounded w-50' style={{ marginTop: "5rem", boxShadow: ".25rem .25rem .5rem grey" }}>
@@ -54,7 +56,7 @@ const Signup = (props) => {
         </div>
         <div className="mb-3 container">
           <label htmlFor="cpassword" className="form-label">Confirm Password</label>
-          <input type="password" className="form-control" id="cpassword" name="cpassword" onChange={onChange} required minLength={8} />
+          <input type="password" className="form-control" id="cpassword" name="confirmPass" onChange={onChange} required minLength={8} />
         </div>
         <button className="btn btn-primary">Submit</button>
       </form>
