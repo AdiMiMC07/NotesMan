@@ -13,7 +13,7 @@ export const Navbar = (props) => {
             getUser();
         }
         // eslint-disable-next-line
-    }, [location])
+    }, [])
     const navigate = useNavigate();
     const handleLogout = () => {
         // handling logout functionality
@@ -48,13 +48,16 @@ export const Navbar = (props) => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <Link className={`nav-link ${location.pathname === '/' ? "active" : ""}`} aria-current="page" to="/">Home</Link>
+                                <Link className={`nav-link ${location.pathname === '/dashboard' ? "active" : ""}`} aria-current="page" to="/dashboard">Dashboard</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className={`nav-link ${location.pathname === '/' ? "active" : ""}`} aria-current="page" to="/">Notes</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className={`nav-link ${location.pathname === '/about' ? "active" : ""}`} to="/about">About</Link>
                             </li>
                         </ul>
-                    <div className="btn-group mx-3">
+                    {/* <div className="btn-group mx-3">
                         <button className={`btn btn-primary dropdown-toggle ${userInfo.name===""?"d-none":""}`} type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                             Profile
                         </button>
@@ -62,7 +65,7 @@ export const Navbar = (props) => {
                             <li><span className="dropdown-item">Name : {userInfo.name.toUpperCase()}</span> <hr /> </li>
                             <li><span className="dropdown-item">Email : {userInfo.email}</span></li>
                         </ul>
-                    </div>
+                    </div> */}
                         {!localStorage.getItem('token') ? <div><Link className="btn btn-primary mx-1" to="/login" role="button">Login</Link>
                             <Link className="btn btn-primary mx-1" to="/signup" role="button">Sign Up</Link></div> : <button className='btn btn-primary mx-2' onClick={handleLogout}>LogOut</button>}
                     </div>
