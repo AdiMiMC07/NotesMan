@@ -9,7 +9,7 @@ const Signup = (props) => {
     const { name, email, password, confirmPass } = credentials;
     console.log(password,confirmPass);
     if (password === confirmPass) {
-      const signupData = await fetch("http://localhost:8000/api/auth/createuser", {
+      const signupData = await fetch("https://notes-man-backend.vercel.app/api/auth/createuser", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'

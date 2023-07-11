@@ -27,7 +27,7 @@ export const Navbar = (props) => {
     const [userInfo, setUserInfo] = useState({ name: "", email: "" });
     const getUser = async () => {
         // making an api call to fetch user data
-        const userData = await fetch("http://localhost:8000/api/auth/getuser", {
+        const userData = await fetch("https://notes-man-backend.vercel.app/api/auth/getuser", {
             method: 'GET',
             headers: {
                 'auth-token': localStorage.getItem('token')

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import userContext from "./userContext";
 
 const UserState = (props) => {
-  const host = "http://localhost:8000";
+  const host = "https://notes-man-backend.vercel.app";
   const [user, setUser] = useState({});
 
   // Get user details

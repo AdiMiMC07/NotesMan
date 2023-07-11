@@ -3,12 +3,13 @@ import { useState } from "react";
 
 const NoteState = (props) => {
   // hostname 
-  const host = "http://localhost:8000";
+  const host = "https://notes-man-backend.vercel.app";
   const noteInitial = [];
   const [notes, setNotes] = useState(noteInitial);
   // function to fetch all notes 
   const getNotes = async ()=>{
-    // making api call and fetching the notes data // GET req
+    // making api call and fetching the notes data
+
     // eslint-disable-next-line
     const response = await fetch(`${host}/api/note/fetchnotes`,{
       method: 'GET',
